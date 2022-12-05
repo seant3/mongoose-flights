@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>New Ticket Information</title>
+  </head>
+  <body>
+    <%- include('../partials/header') %>
+
+    <h2>Create a New Ticket</h2>
+    <form method="POST"
+    action="/flights/<%= flightID %>/tickets">
+    <label>Seat
+    <input name="seat" required pattern="[A-F][1-9]\d?">
+
+    </label><br>
+    <label>Price
+    <input type="Number" name="price" min:0>
+    </label><br>
+    <input type="submit" value="Add Ticket">
+    </form>
+</body>
+</html>

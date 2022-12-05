@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>Show Flights</title>
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+    <section id="show-page">
+        <div>Airline:</div>
+        <div><%= flight.airline %> </div>
+        <div>Airport:</div>
+        <div><%= flight.depAirport %> </div>
+        <div>Flight Number:</div>
+        <div><%= flight.flightNo %> </div>
+        <div>Departs:</div>
+        <div><%= flight.departs %> </div>
+
+    </section>
+     </br></br><div>Destinations:</div>
+        <section>
+          <table>
+              <tr>
+                <th>Airport</th>
+                <th>Arrival Time</th>
+              </tr>
+            <tbody>
+              <% flight.destinations.forEach(function(d) { %>
+                  <tr>
+                    <td><%= d.arrAirport %></td>
+                    <td><%= d.arrivalDate %></td>
+                  </tr>
+                <% }); %>
+            </tbody>
+          </table>
+        </section>
+
+      </br></br><div>Tickets:</div>
+      <section>
+        <table>
+            <tr>
+              <th>Seat</th>
+              <th>Price</th>
+            </tr>
+          <tbody>
+            <% tickets.forEach(function(t) { %>
+                <tr>
+                  <td><%= t.seat %></td>
+                  <td><%= t.price %></td>
+                  <td><form action=<%= `/tickets/${t._id}/?_method=DELETE` %> method="post" id="deleteticket">
+                    <button type="submit">DELETE</button>
+                  </form></td>
+                </tr>
+              <% }); %>
+          </tbody>
+        </table>
+      </section>
+
+
+
+
+        </section>
+
+<br><br><h2>Add Destination</h2>
+<form method="POST"
+  action="/flights/<%= flight._id %>/destinations">
+  <label>Arrival Airport:
+    <select name="arrAirport">
+        <option value="AUS">AUS</option>
+        <option value="DFW">DFW</option>
+        <option value="DEN">DEN</option>
+        <option value="LAX">LAX</option>
+        <option value="SAN">SAN</option>
+      </select>
+    </label><br>
+    <label>Arrival Time:
+    <input type="datetime-local" name="arrivalDate">
+    </label><br>
+  <input type="submit" value="Add Destination">
+</form>
+
+    <section>
+    <br><br><a href="./<%= flight._id %>/tickets/new ">Add Ticket</a>
+       
+    </section>
+
+</body>
+</html>

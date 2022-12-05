@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+
+  <title>Airport Stuff</title>
+</head>
+<body>
+  <%- include('../partials/header') %>
+
+  <h1>Flight List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Airline</th>
+        <th>Departing Airport</th>
+        <th>Flight Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% flights.forEach(f => { %>
+        <tr>
+          <td><%= f.airline %></td>
+          <td><%= f.DepAirport %></td>
+          <td><%= f.flightNo %></td>
+          <td><a href="/flights/<%= f._id %> ">Details</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+</body>
+</html>
